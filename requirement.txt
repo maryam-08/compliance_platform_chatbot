@@ -1,14 +1,26 @@
+# Core
 streamlit
-supabase
-langchain
-langchain-core
-langchain-community
-langchain-huggingface
-langchain-text-splitters
-huggingface-hub
-sentence-transformers
-PyMuPDF
-rapidocr-onnxruntime
 python-dotenv
-httpx
+supabase
  
+# Embeddings & vector store
+langchain-core==0.2.43
+langchain-community==0.2.19
+langchain-huggingface==0.0.3
+sentence-transformers==3.0.1
+transformers==4.44.2
+ 
+# Fine-tuning (only needed to run finetune.py)
+torchvision==0.16.2
+
+peft>=0.10.0
+trl>=0.8.0
+datasets
+accelerate
+#bitsandbytes       # optional: GPU 4-bit quantisation, skip on CPU-only
+ 
+# HF API fallback
+huggingface-hub
+ 
+# Fix postgrest incompatibility
+postgrest>=0.16.0

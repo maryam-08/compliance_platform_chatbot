@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "../../Downloads/weeebb"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../../ucar-backend"
+		},
+		{
+			"path": "../../ucar-platform/src"
+		},
+		{
+			"path": "../../Desktop/projet"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "chatbot"
+	}
+}

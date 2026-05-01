@@ -1,5 +1,4 @@
 
-Copy
 
 """
 finetune.py
@@ -16,6 +15,7 @@ Output:  ./finetuned_model/   (load this in app.py)
  
 import json
 import os
+os.environ["PYTHONUTF8"] = "1"
 from pathlib import Path
  
 # ── Configurable ──────────────────────────────────────────────────────────────
