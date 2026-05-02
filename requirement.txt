@@ -24,3 +24,5 @@ huggingface-hub
  
 # Fix postgrest incompatibility
 postgrest>=0.16.0
+
+groq

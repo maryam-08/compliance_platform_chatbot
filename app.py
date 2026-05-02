@@ -53,16 +53,12 @@ def init_supabase_and_embeddings():
     return supabase, embeddings
 
 
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
 @st.cache_resource
-def init_gemini_client():
-    """
-    Connects to the Gemini API.
-    Only used if the fine-tuned model folder is missing.
-    """
-    genai.configure(api_key=GEMINI_API_KEY)
-    return genai.GenerativeModel("gemini-2.0-flash")
-
-
+def init_groq_client():
+    from groq import Groq
+    return Groq(api_key=GROQ_API_KEY)
 # ─────────────────────────────────────────────────────────────────────────────
 # SECTION 2 — RAG STEP 1: RETRIEVE
 # Searches Supabase for the legal text chunks most relevant
@@ -249,12 +245,13 @@ def generate_answer_local(pipe, prompt: str) -> str:
 
 
 def generate_answer_gemini(context: str, question: str, history: list) -> str:
-    """Sends the prompt to Gemini and returns its response."""
-    client   = init_gemini_client()
-    prompt   = build_prompt_gemini(context, question, history)
-    response = client.generate_content(prompt)
-    return response.text.strip()
-
+    client = init_groq_client()
+    prompt = build_prompt_gemini(context, question, history)
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return response.choices[0].message.content.strip()
 
 # ─────────────────────────────────────────────────────────────────────────────
 # SECTION 6 — FULL RAG PIPELINE
